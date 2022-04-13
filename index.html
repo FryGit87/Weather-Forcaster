@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
     <title>Weather Dashboard</title>
 </head>
 <body>
@@ -16,32 +17,36 @@
                 <div class="search-header search main">
                     <h2>Search for a City</h2>
                 </div>
-
-
+                <!-- SEARCH BOX HERE -->
                 <div class="search-history"></div>
-
-
             </div>
+
             <div class="weather-display-container">
                 <div class="current-weather">
                     <div class="main">
                         <h2 class="searched-city-name">CITY</h2>
                         <h2 class="today-date">DATE</h2>
-
+                        <!-- IMAGE HERE NEEDED -->
+                    </div>
+                    <div class="main">
+                        <p class="temperature">Temperature:</p>
+                    </div>
+                    <div class="main">
+                        <p class="wind">Wind:</p>
+                    </div>
+                    <div class="main">
+                        <p class="humidity">Humidity:</p>
+                    </div>
+                    <div class="main">
+                        <p class="uv">UV Index:</p>
                     </div>
                 </div>
-
+                <div class="next-five-days">
+                    <h2>5-Day Forcast</h2>
+                    <div class="future-forecast-cards"></div>
+                </div>
             </div>
-
-
-
-
-
-
-
-
-
         </div>
-    
+    <script src="./app.js"></script>
 </body>
 </html>
