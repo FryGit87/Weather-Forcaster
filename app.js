@@ -3,18 +3,19 @@ var apiKey = "c897da12469fa121d634b40a11fa4de5";
 //left side
 let cityEl = $(".city");
 let dateEl = $(".date");
-let pastSerchEl = $(".pastSerch");
+// let imageEl = $(".weather-image");
+let previousSearches = $(".search-history");
 
 //search
 let searchBtn = $(".search-button");
 let searchInput = $(".search-input");
 
 //main display
-let temperatureEl = $(".temp");
+let temperatureEl = $(".temperature");
 let windEl = $(".wind");
 let humidEl = $(".humidity");
-let uvIndexEl = $(".uvIndex");
-let cardRow = $(".card-row");
+let uvIndexEl = $(".uv");
+let nextFiveDays = $(".future-forecast-cards");
 
 var todayDate = moment().format("MM/DD/YYYY");
 
@@ -22,24 +23,42 @@ var todayDate = moment().format("MM/DD/YYYY");
 searchBtn.on("click", function (e) {
   e.preventDefault();
   dateEl.text(`(${todayDate})`);
-  findWeather(searchInput.val());
+  returnWeatherData(searchInput.val());
 });
+
+//
+//-------------------------------NOT DONE-----------------------------------
+//
+if (JSON.parse(localStorage.getItem("previousSearch")) === null) {
+  console.log("null");
+} else {
+  console.log("!null");
+  displayPreviousSearch();
+}
 
 //------------------------------- DONE-----------------------------------
 
 function displayPreviousSearch(cName) {
-  pastSerchEl.empty();
+  previousSearches.empty();
   let pastSerchArr = JSON.parse(localStorage.getItem("previousSearch"));
   for (let i = 0; i < pastSerchArr.length; i++) {
     let recentSearch = $("<li>");
     recentSearch.text(pastSerchArr[i]);
-    pastSerchEl.prepend(recentSearch);
+    previousSearches.prepend(recentSearch);
   }
 }
 
+//
 //-------------------------------DONE-----------------------------------
 
-function weatherInformation(cName, cTemp, cHumid, cWind, cUvRating) {
+function weatherInformation(
+  cName,
+  cTemp,
+  cHumid,
+  cWind,
+  //   cityWeatherIcon,
+  cUvRating
+) {
   cityEl.text(cName);
   dateEl.text(`(${todayDate})`);
   temperatureEl.text(`Temperature: ${cTemp} °F`);
@@ -64,7 +83,7 @@ function returnWeatherData(userCityChoice) {
       cUvRating: weatherData.coord,
       cWeatherImg: weatherData.weather[0].icon,
     };
-    let queryUrl = `https://api.openweathermap.org/data/2.5/uvi?lat=${cObject.cUvRating.lat}&lon=${cityObj.cUvRating.lon}&APPID=${apiKey}&units=imperial`;
+    let queryUrl = `https://api.openweathermap.org/data/2.5/uvi?lat=${cObject.cUvRating.lat}&lon=${cObject.cUvRating.lon}&APPID=${apiKey}&units=imperial`;
     $.ajax({
       url: queryUrl,
       method: "GET",
@@ -129,8 +148,6 @@ function returnWeatherData(userCityChoice) {
   });
 }
 
-nextFiveDays();
+// nextFiveDays();
 
-function nextFiveDays() {
-  //WRITE MEEEEEEEEEE
-}
+// function nextFiveDays() {}
