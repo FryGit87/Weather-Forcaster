@@ -147,4 +147,52 @@ function returnWeatherData(userCityChoice) {
       }
     });
   });
+  futureFiveDays();
+
+  function futureFiveDays() {
+    nextFiveDays.empty();
+    let queryUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${userCityChoice}&APPID=${apiKey}&units=imperial`;
+    $.ajax({
+      url: queryUrl,
+      method: "GET",
+    }).then(function (fiveDayData) {
+      for (let i = 0; i < 5; i++) {
+        let cObject = {
+          date: moment().add(i, "days").format("DD/MM/YYYY"),
+          //   date: fiveDayData.list[i].dt_txt,
+          icon: fiveDayData.list[i].weather[0].icon,
+          temperature: fiveDayData.list[i].main.temp,
+          wind: fiveDayData.list[i].wind.speed,
+          humidity: fiveDayData.list[i].main.humidity,
+        };
+        // let weatherIco = `https:///openweathermap.org/img/w/${cObject.icon}.png`;
+        displayNextFiveDays(
+          cObject.date,
+          //   weatherIco,
+          cObject.temperature,
+          cObject.wind,
+          cObject.humidity
+        );
+      }
+    });
+  }
+}
+
+function displayNextFiveDays(date, temperature, wind, humidity) {
+  // HTML elements we will create to later
+  let fiveCards = $("<div>").attr("class", "five-day-card");
+  let futureDate = $("<h3>").attr("class", "future-box");
+  // let cardIcon = $("<img>").attr("class", "weatherIcon");
+  let futureTemp = $("<p>").attr("class", "future-box");
+  let futureWind = $("<p>").attr("class", "future-box");
+  let futureHumidity = $("<p>").attr("class", "future-box");
+
+  nextFiveDays.append(fiveCards);
+  futureDate.text(date);
+  // cardIcon.attr("src", icon);
+  futureTemp.text(`Temp: ${temperature} °F`);
+  futureWind.text(`Wind: ${wind} MPH`);
+  futureHumidity.text(`Humidity: ${humidity}%`);
+  //   fiveDayCardEl.append(cardDate, cardIcon, cardTemp, cardHumidity);
+  fiveCards.append(futureDate, futureTemp, futureWind, futureHumidity);
 }

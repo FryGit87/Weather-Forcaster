@@ -77,11 +77,7 @@ input {
 }
 
 button {
-    /*
-    background-color: #235ba9;
-    border: none;
-    border-radius: 5px;
-    transition-duration: .4s; */
+
     color: #ffffff;
     width: 100%;
     text-align: center;
@@ -93,15 +89,6 @@ button {
     box-shadow: none;
     border: none;
 }
-
-/* button:hover {
-    background-color: #feca57;
-} */
-
-/* button:focus {
-    border: none;
-    outline-color: #b2bec3; 
-}*/
 
 
 ul{
@@ -124,60 +111,14 @@ li {
 
 
 
-/* 
-.five-day-container .card-text {
-    margin-bottom: 15px;
-    padding: 10px 30px 5px 10px;
+.five-day-card {
+    margin: 20px;
+    background-color: rgb(68, 66, 80);
+    min-width: 100px;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 5px;
 }
-
-.five-day-card h3 {
-    margin: 5px;
-}
-
-.five-day-card img {
-    margin-left: 10%;
-}
-
-.historyItems {
-    margin-top: 20px;
-}
-
-.historyItems:nth-child() {
-    margin-top: 20px;
-}
-
-img {
-    width: auto;
-    height: auto;
-}
-
-input {
-    height: 40px;
-    width: auto;
-}
-*/
-
-
-/*
-li:last-child {
-    height: 100%;
-    font-size: larger;
-    background-color: white;
-    border: solid 1px #cecfd2;
-    border-radius: 0px 0px 6px 6px;
-    padding: 12px 5px 12px 15px;
-    list-style: none;
-}
-
-.row {
-    display: flex;
-    line-height: 50%;
-    margin: 5px 5px 5px 0px;
-}
-
-.row * {
-    margin-right: 5px;
-} */
 
 
 
