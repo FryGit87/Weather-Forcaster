@@ -1,7 +1,7 @@
 var apiKey = "c897da12469fa121d634b40a11fa4de5";
 
 //left side
-let cityEl = $(".city");
+let cityEl = $(".searched-city-name");
 let dateEl = $(".date");
 // let imageEl = $(".weather-image");
 let previousSearches = $(".search-history");
@@ -14,7 +14,7 @@ let searchInput = $(".search-input");
 let temperatureEl = $(".temperature");
 let windEl = $(".wind");
 let humidEl = $(".humidity");
-let uvIndexEl = $(".uv");
+let uvIndexEl = $(".uvIndex");
 let nextFiveDays = $(".future-forecast-cards");
 
 var todayDate = moment().format("MM/DD/YYYY");
@@ -56,8 +56,8 @@ function weatherInformation(
   cTemp,
   cHumid,
   cWind,
-  //   cityWeatherIcon,
   cUvRating
+  //   cityWeatherIcon,
 ) {
   cityEl.text(cName);
   dateEl.text(`(${todayDate})`);
@@ -88,6 +88,7 @@ function returnWeatherData(userCityChoice) {
       url: queryUrl,
       method: "GET",
     }).then(function (cUv) {
+      console.log(cUv.value);
       if (JSON.parse(localStorage.getItem("previousSearch")) == null) {
         let pastSerchArr = [];
         if (pastSerchArr.indexOf(cObject.cName) === -1) {
@@ -100,8 +101,8 @@ function returnWeatherData(userCityChoice) {
             cObject.cTemp,
             cObject.cHumid,
             cObject.cWind,
-            cWeatherImgDisplay,
-            cUv.value
+            cUv.value,
+            cWeatherImgDisplay
           );
           displayPreviousSearch(cObject.cName);
         } else {
@@ -112,8 +113,8 @@ function returnWeatherData(userCityChoice) {
             cObject.cTemp,
             cObject.cHumid,
             cObject.cWind,
-            cWeatherImgDisplay,
-            cUv.value
+            cUv.value,
+            cWeatherImgDisplay
           );
         }
       } else {
@@ -127,8 +128,8 @@ function returnWeatherData(userCityChoice) {
             cObject.cTemp,
             cObject.cHumid,
             cObject.cWind,
-            cWeatherImgDisplay,
-            cUv.value
+            cUv.value,
+            cWeatherImgDisplay
           );
           displayPreviousSearch(cObject.cName);
         } else {
@@ -139,15 +140,11 @@ function returnWeatherData(userCityChoice) {
             cObject.cTemp,
             cObject.cHumid,
             cObject.cWind,
-            cWeatherImgDisplay,
-            cUv.value
+            cUv.value,
+            cWeatherImgDisplay
           );
         }
       }
     });
   });
 }
-
-// nextFiveDays();
-
-// function nextFiveDays() {}
