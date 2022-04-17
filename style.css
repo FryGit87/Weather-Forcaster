@@ -60,6 +60,9 @@ hr{
     display: flex;
 }
 
+ h3{
+    font-size: 20px;
+}
 
 .future-card {
     color: white;
@@ -114,13 +117,27 @@ li {
 .five-day-card {
     margin: 20px;
     background-color: rgb(68, 66, 80);
-    min-width: 100px;
+    min-width: 150px;
+    width: 200px;
     color: #ffffff;
     font-size: 16px;
-    padding: 5px;
+    padding: 8px;
 }
 
 
+.low-uvi{
+    background-color: rgb(50, 196, 50);
+    width: 110px;
+}
 
+.mid-uvi {
+    background-color: rgb(236, 162, 33);
+    width: 110px;
+}
+
+.high-uvi {
+    background-color: rgb(195, 40, 40);
+    width: 110px;
+}
 
 
