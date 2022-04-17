@@ -29,9 +29,6 @@ header {
     background-image: linear-gradient(to right, #235ba9, rgb(40, 18, 119));
 }
 
-.container-wrapper {
-    display: flex;
-}
 
 hr{
     border: 2px solid #868f96;
@@ -51,6 +48,10 @@ hr{
     margin: 15px;
 }
 
+.main-flex {
+    display: flex;
+    align-items: baseline;
+}
 
 .next-five-days h2 {
     margin: 15px;
@@ -58,6 +59,8 @@ hr{
 
 .future-forecast-cards {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
  h3{
@@ -115,10 +118,8 @@ li {
 
 
 .five-day-card {
-    margin: 20px;
+    margin: 5px;
     background-color: rgb(68, 66, 80);
-    min-width: 150px;
-    width: 200px;
     color: #ffffff;
     font-size: 16px;
     padding: 8px;
@@ -127,17 +128,26 @@ li {
 
 .low-uvi{
     background-color: rgb(50, 196, 50);
-    width: 110px;
+    padding: 0, 10px;
+
 }
 
 .mid-uvi {
     background-color: rgb(236, 162, 33);
-    width: 110px;
+    padding: 0 10px;    
 }
 
 .high-uvi {
     background-color: rgb(195, 40, 40);
-    width: 110px;
+    padding: 0 10px;
 }
 
 
+/* @media screen and (min-width: 1440px) {
+    .future-forecast-cards{
+        
+            display: flex;
+            flex-flow: column wrap;
+        
+    }
+} */

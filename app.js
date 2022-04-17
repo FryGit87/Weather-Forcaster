@@ -64,7 +64,7 @@ function weatherInformation(
   temperatureEl.text(`Temperature: ${cTemp} °F`);
   windEl.text(`Wind Speed: ${cWind} MPH`);
   humidEl.text(`Humidity: ${cHumid}%`);
-  uvIndexEl.text(`UV Index: ${cUvRating}`);
+  uvIndexEl.text(`${cUvRating}`);
 
   function uvColour() {
     if (cUvRating < 4) {
@@ -78,10 +78,14 @@ function weatherInformation(
   uvColour(cUvRating);
 }
 
+// function getCoords(cityChosenByUser){
+
+// }
+
 //------------------------------- DONE-----------------------------------
 
 function returnWeatherData(userCityChoice) {
-  let queryUrl = `https://api.openweathermap.org/data/2.5/weather?q=${userCityChoice}&APPID=${apiKey}&units=imperial`;
+  let queryUrl = `https://api.openweathermap.org/data/2.5/weather?q=${userCityChoice}&units=imperial&appid=${apiKey}`;
   $.ajax({
     url: queryUrl,
     method: "GET",
@@ -192,12 +196,14 @@ function returnWeatherData(userCityChoice) {
 function displayNextFiveDays(date, temperature, wind, humidity) {
   let fiveCards = $("<div>").attr("class", "five-day-card");
   let futureDate = $("<h3>").attr("class", "future-box");
+  // let futureImg = $("<img>").attr("class", "weatherIcon");
   let futureTemp = $("<p>").attr("class", "future-box");
   let futureWind = $("<p>").attr("class", "future-box");
   let futureHumidity = $("<p>").attr("class", "future-box");
 
   nextFiveDays.append(fiveCards);
   futureDate.text(date);
+  // futureImg.attr("src", icon);
   futureTemp.text(`Temp: ${temperature} °F`);
   futureWind.text(`Wind: ${wind} MPH`);
   futureHumidity.text(`Humidity: ${humidity}%`);

@@ -19,8 +19,9 @@
         <h1>Weather Dashboard</h1>
     </header>
 
-        <div class="container-wrapper col-md-12 col-lg-12">
-            <div class="user-search col-lg-3 col-md-3">
+        <div class="container">
+            <div class="row">
+            <div class="user-search col-12 col-lg-3 col-md-3">
                 <div class="search-header search main">
                     <h2>Search for a City:</h2>
                 </div>
@@ -36,7 +37,7 @@
                 </div>
             </div>
 
-            <div class="weather-display-container col-lg-9 col-md-9">
+            <div class="weather-display-container col-12 col-lg-8 col-md-8">
                 <div class="current-weather col-lg-11 col-md-11">
                     <div class="main">
                         <h2 class="searched-city-name">CITY</h2>
@@ -52,15 +53,16 @@
                     <div class="main">
                         <p class="humidity">Humidity:</p>
                     </div>
-                    <div class="main">
-                        <p class="uvIndex">UV Index:</p>
+                    <div class="main-flex">
+                        <p>UV Index:</p><div class="uvIndex"></div>
                     </div>
                 </div>
-                <div class="next-five-days col-lg-6 col-md-6 col-sm-6">
+                <div class="next-five-days">
                     <h2>5-Day Forcast</h2>
-                    <div class="future-forecast-cards col-lg-6 col-md-6 col-sml-6">
+                    <div class="future-forecast-cards">
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     <script src="./app.js"></script>
