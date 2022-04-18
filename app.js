@@ -1,34 +1,23 @@
 var apiKey = "c897da12469fa121d634b40a11fa4de5";
-
-//left side
 let cityEl = $(".searched-city-name");
 let dateEl = $(".date");
 let imageEl = $(".weather-img");
 let previousSearches = $(".search-history");
-
-//search
 let searchBtn = $(".search-button");
 let searchInput = $(".search-input");
-
-//main display
 let temperatureEl = $(".temperature");
 let windEl = $(".wind");
 let humidEl = $(".humidity");
 let uvIndexEl = $(".uvIndex");
 let nextFiveDays = $(".future-forecast-cards");
-
 var todayDate = moment().format("MM/DD/YYYY");
 
-//-------------------------------DONE-----------------------------------
 searchBtn.on("click", function (e) {
   e.preventDefault();
   dateEl.text(`(${todayDate})`);
   returnWeatherData(searchInput.val());
 });
 
-//
-//-------------------------------NOT DONE-----------------------------------
-//
 if (JSON.parse(localStorage.getItem("previousSearch")) === null) {
   console.log("null");
 } else {
@@ -36,21 +25,17 @@ if (JSON.parse(localStorage.getItem("previousSearch")) === null) {
   displayPreviousSearch();
 }
 
-//------------------------------- DONE-----------------------------------
-
 function displayPreviousSearch(cName) {
   previousSearches.empty();
   let pastSerchArr = JSON.parse(localStorage.getItem("previousSearch"));
   for (let i = 0; i < pastSerchArr.length; i++) {
-    let recentSearch = $("<li>");
+    let recentSearch = $("<li>").attr("class", "previous-search");
     recentSearch.text(pastSerchArr[i]);
     previousSearches.prepend(recentSearch);
   }
 }
 
-//
-//-------------------------------DONE-----------------------------------
-
+//display weather data, current date, uv index colour
 function weatherInformation(
   cName,
   cTemp,
@@ -78,12 +63,7 @@ function weatherInformation(
   uvColour(cUvRating);
 }
 
-// function getCoords(cityChosenByUser){
-
-// }
-
-//------------------------------- DONE-----------------------------------
-
+//User searches are saved into an array and checked to make sure they can not be double entered.
 function returnWeatherData(userCityChoice) {
   let queryUrl = `https://api.openweathermap.org/data/2.5/weather?q=${userCityChoice}&units=imperial&appid=${apiKey}`;
   $.ajax({
@@ -164,6 +144,7 @@ function returnWeatherData(userCityChoice) {
   });
   futureFiveDays();
 
+  //Call and loop for the forecast for the next Five days
   function futureFiveDays() {
     nextFiveDays.empty();
     let queryUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${userCityChoice}&APPID=${apiKey}&units=imperial`;
@@ -193,6 +174,7 @@ function returnWeatherData(userCityChoice) {
   }
 }
 
+//Card Creation
 function displayNextFiveDays(date, image, temperature, wind, humidity) {
   let fiveCards = $("<div>").attr("class", "five-day-card");
   let futureDate = $("<h3>").attr("class", "future-box");
@@ -215,3 +197,8 @@ function displayNextFiveDays(date, image, temperature, wind, humidity) {
     futureHumidity
   );
 }
+//On click function to draw back weather data from previous searches
+$(document).on("click", ".previous-search", function () {
+  let clickedPriorSearch = $(this);
+  returnWeatherData(clickedPriorSearch.text());
+});
