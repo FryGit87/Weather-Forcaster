@@ -3,7 +3,7 @@ var apiKey = "c897da12469fa121d634b40a11fa4de5";
 //left side
 let cityEl = $(".searched-city-name");
 let dateEl = $(".date");
-// let imageEl = $(".weather-image");
+let imageEl = $(".weather-img");
 let previousSearches = $(".search-history");
 
 //search
@@ -56,8 +56,8 @@ function weatherInformation(
   cTemp,
   cHumid,
   cWind,
-  cUvRating
-  //   cWeatherIcon,
+  cUvRating,
+  cWeatherImg
 ) {
   cityEl.text(cName);
   dateEl.text(`(${todayDate})`);
@@ -65,7 +65,7 @@ function weatherInformation(
   windEl.text(`Wind Speed: ${cWind} MPH`);
   humidEl.text(`Humidity: ${cHumid}%`);
   uvIndexEl.text(`${cUvRating}`);
-
+  imageEl.attr("src", cWeatherImg);
   function uvColour() {
     if (cUvRating < 4) {
       $(".uvIndex").addClass("low-uvi");
@@ -180,10 +180,10 @@ function returnWeatherData(userCityChoice) {
           humidity: fiveDayData.list[i].main.humidity,
         };
         console.log(fiveDayData);
-        // let weatherImg = `https:///openweathermap.org/img/w/${cObject.icon}.png`;
+        let weatherImg = `https:///openweathermap.org/img/w/${cObject.icon}.png`;
         displayNextFiveDays(
           cObject.date,
-          //   weatherImg,
+          weatherImg,
           cObject.temperature,
           cObject.wind,
           cObject.humidity
@@ -193,19 +193,25 @@ function returnWeatherData(userCityChoice) {
   }
 }
 
-function displayNextFiveDays(date, temperature, wind, humidity) {
+function displayNextFiveDays(date, image, temperature, wind, humidity) {
   let fiveCards = $("<div>").attr("class", "five-day-card");
   let futureDate = $("<h3>").attr("class", "future-box");
-  // let futureImg = $("<img>").attr("class", "weatherIcon");
+  let futureImg = $("<img>").attr("class", "weather-img");
   let futureTemp = $("<p>").attr("class", "future-box");
   let futureWind = $("<p>").attr("class", "future-box");
   let futureHumidity = $("<p>").attr("class", "future-box");
 
   nextFiveDays.append(fiveCards);
   futureDate.text(date);
-  // futureImg.attr("src", icon);
+  futureImg.attr("src", image);
   futureTemp.text(`Temp: ${temperature} °F`);
   futureWind.text(`Wind: ${wind} MPH`);
   futureHumidity.text(`Humidity: ${humidity}%`);
-  fiveCards.append(futureDate, futureTemp, futureWind, futureHumidity);
+  fiveCards.append(
+    futureDate,
+    futureImg,
+    futureTemp,
+    futureWind,
+    futureHumidity
+  );
 }
